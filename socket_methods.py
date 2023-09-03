@@ -48,7 +48,7 @@ def add_player_to_game(room_id, player_id, player_name):
             p = player.Player(player_name=player_name, player_index=nbr_players, player_id=player_id)
             my_game.add_player(p)
 
-        
+
 def join_game(req):
     sid = request.sid
     player_id = req['player_id']
