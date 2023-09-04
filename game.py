@@ -49,8 +49,11 @@ class TarneebGame(CardGame):
         self.nbr_of_human_players += 1
         self.players.append(player)
 
-    def remove_player(self, player):
+    def remove_player(self, player_index):
         self.nbr_of_human_players -= 1
+        self.players[player_index].player_name = ''
+        self.players[player_index].player_id = ''
+
 
     # ???????????????
 

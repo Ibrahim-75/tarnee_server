@@ -26,14 +26,17 @@ def index():
 
 ####Declarations#####################
 host = '192.168.65.1'
-port = 49152
+port = 5000
 
+# host = '0.0.0.0'
+# port = 49152
 
 #################################################
 
 @socketio.on('connect')
 def on_connect():
-    connect()
+    sid = request.sid
+    connect(sid)
 
 
 @socketio.on('disconnect')
@@ -43,12 +46,16 @@ def on_disconnect():
 
 @socketio.on('create_game_private')
 def on_create_game_private(req):
-    create_game_private(req)
+    sid = request.sid
+    create_game_private(sid, req)
+    print("create game")
+    print(req)
 
 
 @socketio.on('join_game')
 def on_join_game(req):
-    join_game(req)
+    sid = request.sid
+    join_game(sid, req)
 
 
 @socketio.on('create_game_public')
@@ -58,7 +65,8 @@ def on_create_game_public(req):
 
 @socketio.on('join_game')
 def on_join_game(req):
-    join_game(req)
+    sid = request.sid
+    join_game(sid, req)
 
 
 @socketio.on('play_game')

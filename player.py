@@ -2,10 +2,12 @@
 from enumerations import PlayerState
 
 class PlayerData:
-    def __init__(self, player_name):
-        self.room_id = ''
-        self.player_state = PlayerState.waiting
+    def __init__(self, player_name, sid, room_id):
+        self.room_id = room_id
+        self.player_state = PlayerState.waiting.value
         self.player_name = player_name
+        self.sid = sid
+
 
 class Score:
     __slots__ = ("request", "score", "sign")    # this will make objects use less memory and work faster
@@ -37,6 +39,9 @@ class Player(object):
         self.cards = []
         # request_score is a list of dictionaries that stores requests and scores for each round. element 0 => first round
         self.scores = []  # (request, score, sign) sing = -1 => lost this round else wins
+
+    def get_cards(self, player_cards):
+        self.cards = player_cards
 
     def request(self, request):
         score = Score(request)
